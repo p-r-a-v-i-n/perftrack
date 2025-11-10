@@ -81,7 +81,7 @@ jobs:
 
       - name: Save baseline on main
         if: github.ref == 'refs/heads/main'
-        run: perftrack baseline save
+        run: perftrack baseline set-latest
 
       - name: Compare against baseline
         run: perftrack compare --fail-on-regression
