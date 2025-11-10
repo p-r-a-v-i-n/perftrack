@@ -1,4 +1,4 @@
-# PerfTrack — Lightweight Performance Regression Tracker (MVP)
+# PerfTrack
 
 PerfTrack is a command-line tool that helps detect performance regressions in open-source projects and CI pipelines. It requires no external services and tracks performance locally.
 
