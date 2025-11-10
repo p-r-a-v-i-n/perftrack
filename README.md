@@ -59,30 +59,3 @@ Perftrack store results under:
   latest.json
 
 ```
-
-## CI Example (GitHub Actions)
-
-```yml
-name: PerfTrack
-on: [push, pull_request]
-
-jobs:
-  perf:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v4
-        with:
-          python-version: "3.10"
-
-      - run: pip install -e .
-
-      - run: perftrack run "pytest -q"
-
-      - name: Save baseline on main
-        if: github.ref == 'refs/heads/main'
-        run: perftrack baseline set-latest
-
-      - name: Compare against baseline
-        run: perftrack compare --fail-on-regression
-```
