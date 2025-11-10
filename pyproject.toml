@@ -5,7 +5,7 @@ description = "Lightweight CLI tool to detect performance regressions by compari
 readme = "README.md"
 license = { file = "LICENSE" }
 authors = [
-    { name = "Pravin Kamble", email = "p-r-a-v-i-n@users.noreply.github.com" }
+    { name = "Pravin", email = "p-r-a-v-i-n@users.noreply.github.com" }
 ]
 requires-python = ">=3.8"
 keywords = ["performance", "benchmark", "regression", "cli"]
