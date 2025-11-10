@@ -25,7 +25,7 @@ Baseline cached locally → regression check in CI.
 Since the project isn’t published yet, install from source:
 
 ```bash
-git clone https://github.com/yourusername/perftrack.git
+git clone https://github.com/p-r-a-v-i-n/perftrack.git
 cd perftrack
 pip install -r requirements.txt
 pip install -e .
