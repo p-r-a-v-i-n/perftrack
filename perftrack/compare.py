@@ -22,7 +22,10 @@ def compare(baseline_path, latest_path, threshold=0.10):
             diffs[key] = None
             continue
         try:
-            change = (new - old) / float(old) if float(old) != 0 else float('inf')
+            if new == old:
+                change = None
+            else:
+                change = (new - old) / float(old) if float(old) != 0 else float('inf')
         except Exception:
             change = None
         diffs[key] = change
