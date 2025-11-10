@@ -1,0 +1,32 @@
+[project]
+name = "perftrack"
+version = "0.0.1"
+description = "Lightweight CLI tool to detect performance regressions by comparing local benchmark snapshots."
+readme = "README.md"
+license = { file = "LICENSE" }
+authors = [
+    { name = "Pravin Kamble", email = "p-r-a-v-i-n@users.noreply.github.com" }
+]
+requires-python = ">=3.8"
+keywords = ["performance", "benchmark", "regression", "cli"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Intended Audience :: Developers",
+]
+
+dependencies = [
+    "psutil"
+]
+
+[project.urls]
+Homepage = "https://github.com/p-r-a-v-i-n/perftrack"
+Issues = "https://github.com/p-r-a-v-i-n/perftrack/issues"
+
+[project.scripts]
+perftrack = "perftrack.cli:main"
+
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
