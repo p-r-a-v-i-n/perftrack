@@ -1,6 +1,6 @@
 [project]
 name = "perftrack"
-version = "0.0.1"
+version = "0.1.0"
 description = "Lightweight CLI tool to detect performance regressions by comparing local benchmark snapshots."
 readme = "README.md"
 license = { file = "LICENSE" }
