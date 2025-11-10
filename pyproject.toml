@@ -3,11 +3,12 @@ name = "perftrack"
 version = "0.1.0"
 description = "Lightweight CLI tool to detect performance regressions by comparing local benchmark snapshots."
 readme = "README.md"
-license = { file = "LICENSE" }
+license = "MIT"
+license-files = ["LICEN[CS]E*"]
 authors = [
     { name = "Pravin", email = "p-r-a-v-i-n@users.noreply.github.com" }
 ]
-requires-python = ">=3.8"
+requires-python = ">=3.9"
 keywords = ["performance", "benchmark", "regression", "cli"]
 classifiers = [
     "Programming Language :: Python :: 3",
