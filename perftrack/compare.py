@@ -1,4 +1,7 @@
-import json, sys, os
+import json
+import os
+import sys
+
 
 def _load(path):
     if not os.path.exists(path):
@@ -7,7 +10,9 @@ def _load(path):
     with open(path) as f:
         return json.load(f)
 
+
 def compare(baseline_path, latest_path, threshold=0.10):
+    """Compare two performance result files."""
     baseline = _load(baseline_path)
     latest = _load(latest_path)
     if baseline is None or latest is None:
@@ -15,9 +20,9 @@ def compare(baseline_path, latest_path, threshold=0.10):
         return 2
 
     diffs = {}
-    for key in baseline.get('metrics', {}):
-        old = baseline['metrics'].get(key)
-        new = latest['metrics'].get(key)
+    for key in baseline.get("metrics", {}):
+        old = baseline["metrics"].get(key)
+        new = latest["metrics"].get(key)
         if old is None or new is None:
             diffs[key] = None
             continue
@@ -25,16 +30,19 @@ def compare(baseline_path, latest_path, threshold=0.10):
             if new == old:
                 change = None
             else:
-                change = (new - old) / float(old) if float(old) != 0 else float('inf')
+                change = (new - old) / float(old) if float(old) != 0 else float("inf")
         except Exception:
             change = None
         diffs[key] = change
 
-    regressed = {k:v for k,v in diffs.items() if v is not None and v > threshold}
+    regressed = {k: v for k, v in diffs.items() if v is not None and v > threshold}
     if regressed:
         print("Detected regressions:")
-        for k,v in regressed.items():
-            print(f" - {k}: +{v*100:.2f}% (baseline {baseline['metrics'].get(k)} -> latest {latest['metrics'].get(k)})")
+        for k, v in regressed.items():
+            print(
+                f" - {k}: +{v * 100:.2f}% (baseline {baseline['metrics'].get(k)} \
+                -> latest {latest['metrics'].get(k)})"
+            )
         return 1
     else:
         print("No regressions detected.")

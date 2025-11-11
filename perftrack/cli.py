@@ -1,23 +1,37 @@
 import argparse
-import sys
-from perftrack import sampler, compare as cmp, report as rpt
 import os
+import sys
+
+from perftrack import compare as cmp
+from perftrack import report as rpt
+from perftrack import sampler
+
 
 def main():
+    """Entry point for the PerfTrack CLI."""
     parser = argparse.ArgumentParser(prog="perftrack", description="PerfTrack CLI")
     sub = parser.add_subparsers(dest="cmd")
 
     # run
     run_p = sub.add_parser("run", help="Run a command and collect metrics")
     run_p.add_argument("command", help="Command to run, e.g. 'pytest -q'")
-    run_p.add_argument("--interval", type=float, default=0.2, help="Sampling interval in seconds")
-    run_p.add_argument("--out", default=".perftrack/latest.json", help="Output metrics JSON path")
+    run_p.add_argument(
+        "--interval", type=float, default=0.2, help="Sampling interval in seconds"
+    )
+    run_p.add_argument(
+        "--out", default=".perftrack/latest.json", help="Output metrics JSON path"
+    )
 
     # compare
     cmp_p = sub.add_parser("compare", help="Compare baseline and latest")
     cmp_p.add_argument("baseline", nargs="?", default=".perftrack/baseline.json")
     cmp_p.add_argument("latest", nargs="?", default=".perftrack/latest.json")
-    cmp_p.add_argument("--threshold", type=float, default=0.10, help="Allowed fractional change (0.1 = 10%)")
+    cmp_p.add_argument(
+        "--threshold",
+        type=float,
+        default=0.10,
+        help="Allowed fractional change (0.1 = 10%)",
+    )
     cmp_p.add_argument("--fail-on-regression", action="store_true")
 
     # report
@@ -66,6 +80,7 @@ def main():
                 sys.exit(2)
             os.makedirs(os.path.dirname(dst), exist_ok=True)
             import shutil
+
             shutil.copy2(src, dst)
             print(f"Saved baseline to {dst}")
             sys.exit(0)
@@ -81,5 +96,6 @@ def main():
         parser.print_help()
         sys.exit(2)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main()

@@ -60,5 +60,3 @@ PerfTrack guarantees that performance regressions are caught before merge.
 Here is a ([pull request](https://github.com/p-r-a-v-i-n/perftrack-examples/pull/7)) where we intentionally slowed down code to demonstrate PerfTrack in CI.
 
 <img width="741" height="209" alt="perftrack" src="https://github.com/user-attachments/assets/25eca2c6-0226-4608-9614-a2eb0102e67e" />
-
-
