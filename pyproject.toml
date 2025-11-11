@@ -16,7 +16,7 @@ classifiers = [
 ]
 
 dependencies = [
-    "psutil"
+  "psutil>=7.1.3,<8"
 ]
 
 [project.urls]
@@ -33,8 +33,10 @@ build-backend = "setuptools.build_meta"
 
 [project.optional-dependencies]
 dev = [
-    "pre-commit",
-    "ruff"
+  "pytest",
+  "pytest-cov",
+  "pre-commit",
+  "ruff",
 ]
 
 [tool.ruff]
@@ -46,28 +48,26 @@ exclude = [
     "build",
     "dist",
     "venv",
+    ".venv",
+    ".env"
+    "env",
 ]
 
 [tool.ruff.lint]
-# Enable standard linting rules for errors, warnings, flake8, isort, naming, and pydocstyle.
-# E: Error, W: Warning (pycodestyle)
-# F: Pyflakes
-# I: isort
-# N: pep8-naming
-# D: pydocstyle
 select = ["E", "W", "F", "I", "N", "D"]
 ignore = [
-    "D100", # Missing docstring in public module
-    "D104", # Missing docstring in public package
-    "D107", # Missing docstring in __init__
+    "D100",
+    "D104",
+    "D107",
 ]
-# Enforce PEP 257 docstring conventions
+
 docstring-convention = "pep257"
 
 [tool.ruff.format]
-# Use double quotes for strings
 quote-style = "double"
-# Use spaces for indentation (default, but explicit is clear)
 indent-style = "space"
-# Ensure docstring examples are formatted (e.g., in rST, Markdown)
 docstring-code-format = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "--cov=perftrack --cov-report=term-missing"
