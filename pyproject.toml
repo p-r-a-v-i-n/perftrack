@@ -29,3 +29,45 @@ perftrack = "perftrack.cli:main"
 [build-system]
 requires = ["setuptools>=64", "wheel"]
 build-backend = "setuptools.build_meta"
+
+
+[project.optional-dependencies]
+dev = [
+    "pre-commit",
+    "ruff"
+]
+
+[tool.ruff]
+line-length = 88
+target-version = "py39"
+exclude = [
+    ".git",
+    "__pycache__",
+    "build",
+    "dist",
+    "venv",
+]
+
+[tool.ruff.lint]
+# Enable standard linting rules for errors, warnings, flake8, isort, naming, and pydocstyle.
+# E: Error, W: Warning (pycodestyle)
+# F: Pyflakes
+# I: isort
+# N: pep8-naming
+# D: pydocstyle
+select = ["E", "W", "F", "I", "N", "D"]
+ignore = [
+    "D100", # Missing docstring in public module
+    "D104", # Missing docstring in public package
+    "D107", # Missing docstring in __init__
+]
+# Enforce PEP 257 docstring conventions
+docstring-convention = "pep257"
+
+[tool.ruff.format]
+# Use double quotes for strings
+quote-style = "double"
+# Use spaces for indentation (default, but explicit is clear)
+indent-style = "space"
+# Ensure docstring examples are formatted (e.g., in rST, Markdown)
+docstring-code-format = true
