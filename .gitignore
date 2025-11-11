@@ -16,6 +16,6 @@ venv/
 dist/
 build/
 
-# IDE 
+# IDE
 .vscode/
 .idea/
